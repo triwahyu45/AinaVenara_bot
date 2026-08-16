@@ -52,11 +52,13 @@ def is_authorized(msg):
 def main_keyboard():
     markup = types.ReplyKeyboardMarkup(resize_keyboard=True, row_width=2)
     b1 = types.KeyboardButton("🌸 Ngobrol Santai")
-    b2 = types.KeyboardButton("🤖 Status Otak Aina")
-    b3 = types.KeyboardButton("🔄 Ganti Mesin AI")
-    b4 = types.KeyboardButton("🧹 Reset Obrolan")
+    b2 = types.KeyboardButton("🎙️ Toggle Voice Note")
+    b3 = types.KeyboardButton("🤖 Status Otak Aina")
+    b4 = types.KeyboardButton("🔄 Ganti Mesin AI")
+    b5 = types.KeyboardButton("🧹 Reset Obrolan")
     markup.add(b1, b2)
     markup.add(b3, b4)
+    markup.add(b5)
     return markup
 
 @bot.message_handler(commands=["start"])
@@ -68,6 +70,7 @@ def handle_start(msg):
         "Aina siap menemani Kak Wahyu untuk:\n"
         "• 🤖 Coding & Debugging (Python, C++, ROS, Web, Bot)\n"
         "• 🦾 Diskusi Robotika & Mekatronika (ESP32, STM32, Sensor TA)\n"
+        "• 🎙️ **Kirim Voice Note (VN)** suara imut Aina langsung ke HP!\n"
         "• 🧠 Curhat, ngobrol santai, dan penyemangat hari-hari Kak Wahyu\n\n"
         "Otak Aina ditenagai oleh **Dual Engine AI**:\n"
         "1. ☁️ *Gemini Cloud AI* (Model Tercepat & Paling Cerdas)\n"
@@ -79,17 +82,26 @@ def handle_start(msg):
     except:
         bot.send_message(msg.chat.id, welcome, reply_markup=main_keyboard())
 
+@bot.message_handler(commands=["vn", "voice"])
+def handle_vn_toggle(msg):
+    if not is_authorized(msg): return
+    global VOICE_NOTE_ENABLED
+    VOICE_NOTE_ENABLED = not VOICE_NOTE_ENABLED
+    status_str = "AKTIF 🎙️ (Aina akan selalu kirim VN suara imutnya!)" if VOICE_NOTE_ENABLED else "NONAKTIF 🔕 (Hanya teks biasa)"
+    bot.send_message(msg.chat.id, f"🎙️ *Status Voice Note Aina:* `{status_str}`", parse_mode="Markdown")
+
 @bot.message_handler(commands=["help"])
 def handle_help(msg):
     if not is_authorized(msg): return
     text = (
         "🌸 *Daftar Perintah Aina Venara:* 🌸\n\n"
         "• `/start` — Sapaan & Menu Utama Aina\n"
+        "• `/vn` — On/Off fitur Voice Note suara Aina\n"
         "• `/status` — Cek status sistem PC, GPU, dan Engine AI yang aktif\n"
         "• `/switch` — Ganti mesin AI (Gemini Cloud ↔ Local GPU Ollama)\n"
         "• `/reset` — Bersihkan riwayat ingatan obrolan kita\n"
         "• `/help` — Bantuan daftar perintah\n\n"
-        "Kak Wahyu bisa langsung kirim teks biasa kapan saja, Aina akan langsung balas! 💖"
+        "Kak Wahyu bisa langsung kirim teks atau voice note kapan saja! 💖"
     )
     bot.send_message(msg.chat.id, text, parse_mode="Markdown")
 
@@ -101,10 +113,12 @@ def handle_status(msg):
     
     current_eng = engine.current_engine.upper()
     history_count = len(engine.get_history(msg.from_user.id)) // 2
+    vn_status = "Aktif (Suara Id-ID Gadis Neural) 🎙️" if VOICE_NOTE_ENABLED else "Nonaktif 🔕"
     
     text = (
         "🤖 *Status Sistem & Otak Aina Venara* 🌸\n\n"
         f"• 🧠 **Mesin Aktif:** `{current_eng}`\n"
+        f"• 🎙️ **Voice Note (VN):** `{vn_status}`\n"
         f"• ☁️ **Gemini Cloud Key:** `Terkonfigurasi (Active)`\n"
         f"• 🎮 **Local GPU Model:** `{engine.ollama_model}`\n"
         f"• 💾 **Memori Obrolan:** `{history_count} percakapan tersimpan`\n\n"
@@ -138,6 +152,10 @@ def btn_chat(msg):
     if not is_authorized(msg): return
     bot.send_message(msg.chat.id, "Aina di sini Kak Wahyu! Ceritain dong, ada hal menarik apa hari ini atau ada project yang mau kita diskusikan? 😊💖")
 
+@bot.message_handler(func=lambda m: m.text == "🎙️ Toggle Voice Note")
+def btn_vn(msg):
+    handle_vn_toggle(msg)
+
 @bot.message_handler(func=lambda m: m.text == "🤖 Status Otak Aina")
 def btn_status(msg):
     handle_status(msg)
@@ -159,17 +177,34 @@ def handle_all_chat(msg):
     bot.send_chat_action(msg.chat.id, "typing")
     reply, source = engine.generate_reply(msg.from_user.id, user_text)
 
+    # 1. Kirim balasan teks
     try:
-        bot.reply_to(msg, reply, parse_mode="Markdown")
+        sent_msg = bot.reply_to(msg, reply, parse_mode="Markdown")
     except Exception:
-        bot.reply_to(msg, reply, parse_mode=None)
+        sent_msg = bot.reply_to(msg, reply, parse_mode=None)
+
+    # 2. Cek apakah user meminta VN atau Voice Note sedang diaktifkan
+    wants_vn = VOICE_NOTE_ENABLED or any(kw in user_text.lower() for kw in ["vn", "voice", "suara", "denger", "audio", "ngomong"])
+    
+    if wants_vn:
+        try:
+            bot.send_chat_action(msg.chat.id, "record_voice")
+            vn_path = generate_aina_voice(reply)
+            if vn_path and os.path.exists(vn_path):
+                with open(vn_path, "rb") as vf:
+                    bot.send_voice(msg.chat.id, vf, reply_to_message_id=sent_msg.message_id)
+                    print(f"[AINA VN] Voice note successfully sent to Kak Wahyu!")
+        except Exception as e:
+            print(f"[AINA VN ERR] {e}")
 
 if __name__ == "__main__":
     print("==================================================")
     print("🌸 Aina Venara Telegram Bot Service Started! 🌸")
-    print(f"🤖 Bot Username: @AiraVenara_bot")
+    print(f"🤖 Bot Username: @AinaVenara_bot")
     print(f"🧠 Primary Engine: {engine.current_engine}")
+    print(f"🎙️ Voice Note Engine: Active (id-ID-GadisNeural)")
     print("==================================================")
+
     
     while True:
         try:
