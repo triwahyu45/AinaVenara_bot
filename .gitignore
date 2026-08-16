@@ -1,0 +1,13 @@
+# Secret Configuration (Do Not Push Token/Keys)
+config.json
+
+# Python cache & virtual environment
+__pycache__/
+*.py[cod]
+*$py.class
+venv/
+env/
+.env
+
+# Logs
+*.log
