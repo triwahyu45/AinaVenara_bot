@@ -1,0 +1,53 @@
+{
+  "schema_version": 1,
+  "character": "Aina Venara",
+  "base_version": "v6",
+  "canonical_height_cm": 152,
+  "iterations": 12,
+  "search_resolution": 512,
+  "validation_resolution": 2048,
+  "parameters": {
+    "body_width": 1.0,
+    "body_depth": 1.0,
+    "body_height": 1.0,
+    "head_width": 1.0,
+    "head_depth": 1.0,
+    "head_height": 1.0,
+    "hair_scale": 1.0,
+    "bang_scale": 1.0,
+    "ahoge_scale": 1.0,
+    "hairclip_scale": 1.0,
+    "glasses_scale": 1.0,
+    "hoodie_width": 1.0,
+    "hoodie_depth": 1.0,
+    "hoodie_height": 1.0,
+    "shorts_scale": 1.0,
+    "sock_scale": 1.0,
+    "shoe_scale": 1.0
+  },
+  "bounds": {
+    "body_width": [0.94, 1.06],
+    "body_depth": [0.95, 1.05],
+    "body_height": [0.96, 1.04],
+    "head_width": [0.94, 1.06],
+    "head_depth": [0.95, 1.05],
+    "head_height": [0.95, 1.05],
+    "hair_scale": [0.85, 1.18],
+    "bang_scale": [0.85, 1.18],
+    "ahoge_scale": [0.82, 1.2],
+    "hairclip_scale": [0.9, 1.12],
+    "glasses_scale": [0.94, 1.08],
+    "hoodie_width": [0.86, 1.2],
+    "hoodie_depth": [0.9, 1.16],
+    "hoodie_height": [0.9, 1.12],
+    "shorts_scale": [0.92, 1.1],
+    "sock_scale": [0.94, 1.08],
+    "shoe_scale": [0.94, 1.1]
+  },
+  "thresholds": {
+    "silhouette_iou": 0.9,
+    "edge_overlap": 0.85,
+    "landmark_error": 0.03,
+    "rgb_error": 0.16
+  }
+}

@@ -1,0 +1,51 @@
+[
+  {
+    "id": "01-vroid-base",
+    "label": "VRoid: bentuk base wajah dan tubuh",
+    "description": "Buka project Aina, lalu gunakan screenshot checkpoint untuk menilai proporsi dasar. Tambahkan klik terkalibrasi hanya setelah layout VRoid stabil.",
+    "target": "vroid",
+    "manual_only": false,
+    "actions": []
+  },
+  {
+    "id": "02-vroid-hair",
+    "label": "VRoid: rambut bob cyan dan ahoge",
+    "description": "Tahap visual presisi. Gunakan helper untuk navigasi panel saja; menggambar strand rambut tetap manual.",
+    "target": "vroid",
+    "manual_only": false,
+    "actions": []
+  },
+  {
+    "id": "03-vroid-outfit",
+    "label": "VRoid: outfit dasar dan texture",
+    "description": "Gunakan helper untuk checkpoint texture. Import, overwrite, dan penyimpanan asset harus dikonfirmasi manual.",
+    "target": "vroid",
+    "manual_only": false,
+    "actions": []
+  },
+  {
+    "id": "04-export-draft",
+    "label": "VRoid: export draft VRM",
+    "description": "Export dan overwrite tidak pernah dijalankan otomatis. Lakukan manual setelah memeriksa checkpoint.",
+    "target": "vroid",
+    "manual_only": true,
+    "actions": []
+  },
+  {
+    "id": "05-blender-detail",
+    "label": "Blender: jepit angka 3 dan koreksi hoodie",
+    "description": "Gunakan Blender setelah draft VRM tersedia. Helper hanya membantu checkpoint dan navigasi aman.",
+    "target": "blender",
+    "manual_only": false,
+    "actions": []
+  },
+  {
+    "id": "06-export-final",
+    "label": "Blender: export final VRM",
+    "description": "Export final dilakukan manual agar file tidak tertimpa tanpa sengaja.",
+    "target": "blender",
+    "manual_only": true,
+    "actions": []
+  }
+]
+

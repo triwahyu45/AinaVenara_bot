@@ -1,0 +1,8 @@
+downloads/
+output/
+work/
+*.blend
+*.blend1
+__pycache__/
+.pytest_cache/
+

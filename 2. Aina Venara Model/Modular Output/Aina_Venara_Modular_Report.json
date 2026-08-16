@@ -1,0 +1,46 @@
+{
+  "outputs": {
+    "blend": "2. Aina Venara Model/Modular Output/Aina_Venara_Master.blend",
+    "glb": "2. Aina Venara Model/Modular Output/Aina_Venara_Modular.glb",
+    "vrm": "2. Aina Venara Model/Modular Output/Aina_Venara_Modular.vrm"
+  },
+  "target_height_m": 1.52,
+  "mesh_stats": {
+    "vertices": 16814,
+    "triangles": 33468
+  },
+  "modular_collections": [
+    "Body_Base",
+    "Face_Eyes",
+    "Hair_Base",
+    "Hair_Ahoge",
+    "Accessory_Glasses_Pink",
+    "Accessory_Hairclip_3",
+    "Outfit_Modular"
+  ],
+  "materials": [
+    "MAT_Eye_dark_limbal",
+    "MAT_Eye_highlight",
+    "MAT_Eye_teal",
+    "MAT_Glasses_pink_plastic",
+    "MAT_Hair_blue_violet_tips",
+    "MAT_Hair_cyan",
+    "MAT_Hairclip_3_silver",
+    "MAT_Hoodie_charcoal_rib_collar",
+    "MAT_Hoodie_cyan_blue_sleeves",
+    "MAT_Hoodie_cyan_mint",
+    "MAT_Mouth_soft_line",
+    "MAT_Shirt_off_white",
+    "MAT_Shoe_sole_light_gray",
+    "MAT_Shorts_charcoal",
+    "MAT_Skin_soft_peach",
+    "MAT_Sneakers_off_white",
+    "MAT_Socks_white_rib",
+    "MAT_Understrap_pink"
+  ],
+  "notes": [
+    "Tripo raw atlas is kept only as hidden blockout reference inside the blend.",
+    "VRM file is GLB post-processed with VRM 0.x metadata and humanoid node mapping.",
+    "For production tracking, bind meshes to armature weights and tune VRM blendshape binds in a VRM viewer/add-on."
+  ]
+}

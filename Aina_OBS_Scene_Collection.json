@@ -1,0 +1,241 @@
+{
+    "current_program_scene": "Aina Stream",
+    "current_scene": "Aina Stream",
+    "name": "Aina Venara Stream",
+    "preview_locked": false,
+    "quick_transitions": [
+        {
+            "duration": 300,
+            "id": 1,
+            "name": "Cut"
+        },
+        {
+            "duration": 300,
+            "id": 2,
+            "name": "Fade"
+        }
+    ],
+    "scene_order": [
+        {
+            "name": "Aina Stream"
+        }
+    ],
+    "sources": [
+        {
+            "balance": 0.5,
+            "deinterlace_field_order": 0,
+            "deinterlace_mode": 0,
+            "enabled": true,
+            "flags": 0,
+            "hotkeys": {},
+            "id": "scene",
+            "mixers": 0,
+            "monitoring_type": 0,
+            "muted": false,
+            "name": "Aina Stream",
+            "prev_ver": 469762053,
+            "private_settings": {},
+            "push-to-mute": false,
+            "push-to-mute-delay": 0,
+            "push-to-talk": false,
+            "push-to-talk-delay": 0,
+            "settings": {
+                "id_counter": 3,
+                "items": [
+                    {
+                        "align": 5,
+                        "bounds": {
+                            "x": 0.0,
+                            "y": 0.0
+                        },
+                        "bounds_align": 0,
+                        "bounds_type": 0,
+                        "crop_bottom": 0,
+                        "crop_left": 0,
+                        "crop_right": 0,
+                        "crop_top": 0,
+                        "group_item_backup": false,
+                        "home_empty": false,
+                        "id": 1,
+                        "info_flags": 0,
+                        "locked": false,
+                        "name": "VTube Studio Capture",
+                        "pos": {
+                            "x": 0.0,
+                            "y": 0.0
+                        },
+                        "private_settings": {},
+                        "rot": 0.0,
+                        "scale": {
+                            "x": 1.0,
+                            "y": 1.0
+                        },
+                        "scale_filter": "disable",
+                        "visible": true
+                    },
+                    {
+                        "align": 5,
+                        "bounds": {
+                            "x": 0.0,
+                            "y": 0.0
+                        },
+                        "bounds_align": 0,
+                        "bounds_type": 0,
+                        "crop_bottom": 0,
+                        "crop_left": 0,
+                        "crop_right": 0,
+                        "crop_top": 0,
+                        "group_item_backup": false,
+                        "home_empty": false,
+                        "id": 2,
+                        "info_flags": 0,
+                        "locked": false,
+                        "name": "Nama Aina",
+                        "pos": {
+                            "x": 50.0,
+                            "y": 50.0
+                        },
+                        "private_settings": {},
+                        "rot": 0.0,
+                        "scale": {
+                            "x": 1.0,
+                            "y": 1.0
+                        },
+                        "scale_filter": "disable",
+                        "visible": true
+                    },
+                    {
+                        "align": 5,
+                        "bounds": {
+                            "x": 0.0,
+                            "y": 0.0
+                        },
+                        "bounds_align": 0,
+                        "bounds_type": 0,
+                        "crop_bottom": 0,
+                        "crop_left": 0,
+                        "crop_right": 0,
+                        "crop_top": 0,
+                        "group_item_backup": false,
+                        "home_empty": false,
+                        "id": 3,
+                        "info_flags": 0,
+                        "locked": false,
+                        "name": "Suara Aina",
+                        "pos": {
+                            "x": 0.0,
+                            "y": 0.0
+                        },
+                        "private_settings": {},
+                        "rot": 0.0,
+                        "scale": {
+                            "x": 1.0,
+                            "y": 1.0
+                        },
+                        "scale_filter": "disable",
+                        "visible": true
+                    }
+                ]
+            },
+            "sync_offset": 0,
+            "version_type": 0,
+            "volume": 1.0
+        },
+        {
+            "balance": 0.5,
+            "deinterlace_field_order": 0,
+            "deinterlace_mode": 0,
+            "enabled": true,
+            "flags": 0,
+            "hotkeys": {},
+            "id": "window_capture",
+            "mixers": 0,
+            "monitoring_type": 0,
+            "muted": false,
+            "name": "VTube Studio Capture",
+            "prev_ver": 469762053,
+            "private_settings": {},
+            "push-to-mute": false,
+            "push-to-mute-delay": 0,
+            "push-to-talk": false,
+            "push-to-talk-delay": 0,
+            "settings": {
+                "client_area": true,
+                "cursor": true,
+                "method": 2,
+                "priority": 1,
+                "window": "VTube Studio:VTube Studio.exe:VTube Studio"
+            },
+            "sync_offset": 0,
+            "version_type": 0,
+            "volume": 1.0
+        },
+        {
+            "balance": 0.5,
+            "deinterlace_field_order": 0,
+            "deinterlace_mode": 0,
+            "enabled": true,
+            "flags": 0,
+            "hotkeys": {},
+            "id": "text_gdiplus_v2",
+            "mixers": 0,
+            "monitoring_type": 0,
+            "muted": false,
+            "name": "Nama Aina",
+            "prev_ver": 469762053,
+            "private_settings": {},
+            "push-to-mute": false,
+            "push-to-mute-delay": 0,
+            "push-to-talk": false,
+            "push-to-talk-delay": 0,
+            "settings": {
+                "align": "left",
+                "chat_log_lines": 6,
+                "color1": 4294967295,
+                "color2": 4294967295,
+                "extents": false,
+                "font": {
+                    "face": "Outfit",
+                    "flags": 0,
+                    "size": 36,
+                    "style": "Bold"
+                },
+                "gradient": false,
+                "outline": true,
+                "outline_color": 4278190080,
+                "outline_size": 2,
+                "text": "Aina Venara ✨ | AI VTuber",
+                "valign": "top",
+                "vertical": false
+            },
+            "sync_offset": 0,
+            "version_type": 0,
+            "volume": 1.0
+        },
+        {
+            "balance": 0.5,
+            "deinterlace_field_order": 0,
+            "deinterlace_mode": 0,
+            "enabled": true,
+            "flags": 0,
+            "hotkeys": {},
+            "id": "wasapi_output_capture",
+            "mixers": 15,
+            "monitoring_type": 0,
+            "muted": false,
+            "name": "Suara Aina",
+            "prev_ver": 469762053,
+            "private_settings": {},
+            "push-to-mute": false,
+            "push-to-mute-delay": 0,
+            "push-to-talk": false,
+            "push-to-talk-delay": 0,
+            "settings": {
+                "device_id": "default"
+            },
+            "sync_offset": 0,
+            "version_type": 0,
+            "volume": 1.0
+        }
+    ]
+}

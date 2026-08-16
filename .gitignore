@@ -1,0 +1,67 @@
+# Virtual Environment & Python
+.venv/
+venv/
+ENV/
+__pycache__/
+.pytest_cache/
+*.py[cod]
+*.pyo
+*.pyd
+
+# Local Data, Logs, SQLite & Caches
+*.sqlite3
+*.db
+*.log
+*.wav
+audio_cache/
+runtime/
+local_data/
+scratch/
+
+# Secrets & Environment Configurations (Strictly Blocked)
+.env
+*.env
+!*.env.example
+api_keys.env
+vtuber_token.txt
+settings.json
+*service-account*.json
+*cloud-stt*.json
+*credentials*.json
+*.key
+
+# Unity temporary, cache & build outputs
+unity/**/Library/
+unity/**/Logs/
+unity/**/obj/
+unity/**/Temp/
+unity/**/UserSettings/
+unity/**/Build/
+unity/**/Builds/
+unity/**/.vs/
+unity/**/MemoryCaptures/
+
+# Blender & Temporary 3D model intermediate iterations
+*.blend1
+*.blend2
+4. Blender VRM Builder/work/
+4. Blender VRM Builder/output/fitting/
+4. Blender VRM Builder/output/previews/
+4. Blender VRM Builder/output/Aina_Venara_v0*
+4. Blender VRM Builder/output/Aina_Venara_v7*
+4. Blender VRM Builder/output/Aina_Venara_v8*
+4. Blender VRM Builder/output/Aina_Venara_v9*
+4. Blender VRM Builder/output/Aina_Venara_v10*
+4. Blender VRM Builder/output/Aina_Venara_v11*
+4. Blender VRM Builder/output/Aina_Venara_v12*
+4. Blender VRM Builder/output/Aina_Venara_v13*
+4. Blender VRM Builder/output/Aina_Venara_v14*
+4. Blender VRM Builder/output/*.blend
+4. Blender VRM Builder/output/*.blend1
+
+# OS & Editor files
+.DS_Store
+Thumbs.db
+ehthumbs.db
+.idea/
+.vscode/

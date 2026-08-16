@@ -1,0 +1,713 @@
+{
+  "schema_version": 2,
+  "character": "Aina Venara",
+  "canonical_height_cm": 152,
+  "image_size": [
+    2048,
+    2048
+  ],
+  "background": "#FFFFFF",
+  "source_strategy": "individual built-in image_gen plates normalized locally; no crop outputs",
+  "references": [
+    {
+      "file": "01_full_body_front.png",
+      "category": "full-body",
+      "view": "front",
+      "purpose": "Primary silhouette fitting",
+      "camera": "body_front",
+      "use_for_scoring": true,
+      "source_kind": "generated",
+      "qa_status": "approved",
+      "size": [
+        2048,
+        2048
+      ]
+    },
+    {
+      "file": "02_full_body_back.png",
+      "category": "full-body",
+      "view": "back",
+      "purpose": "Back silhouette fitting",
+      "camera": "body_back",
+      "use_for_scoring": true,
+      "source_kind": "generated",
+      "qa_status": "approved",
+      "size": [
+        2048,
+        2048
+      ]
+    },
+    {
+      "file": "03_full_body_left.png",
+      "category": "full-body",
+      "view": "left",
+      "purpose": "Left silhouette fitting",
+      "camera": "body_left",
+      "use_for_scoring": true,
+      "source_kind": "generated",
+      "qa_status": "approved",
+      "size": [
+        2048,
+        2048
+      ]
+    },
+    {
+      "file": "04_full_body_right.png",
+      "category": "full-body",
+      "view": "right",
+      "purpose": "Right silhouette fitting",
+      "camera": "body_right",
+      "use_for_scoring": true,
+      "source_kind": "generated",
+      "qa_status": "approved",
+      "size": [
+        2048,
+        2048
+      ]
+    },
+    {
+      "file": "05_full_body_front_left_3q.png",
+      "category": "full-body",
+      "view": "front-left-3q",
+      "purpose": "Front-left depth fitting",
+      "camera": "body_front_left_3q",
+      "use_for_scoring": true,
+      "source_kind": "generated",
+      "qa_status": "approved",
+      "size": [
+        2048,
+        2048
+      ]
+    },
+    {
+      "file": "06_full_body_front_right_3q.png",
+      "category": "full-body",
+      "view": "front-right-3q",
+      "purpose": "Front-right depth fitting",
+      "camera": "body_front_right_3q",
+      "use_for_scoring": true,
+      "source_kind": "generated",
+      "qa_status": "approved",
+      "size": [
+        2048,
+        2048
+      ]
+    },
+    {
+      "file": "07_full_body_back_left_3q.png",
+      "category": "full-body",
+      "view": "back-left-3q",
+      "purpose": "Back-left volume guide",
+      "camera": "",
+      "use_for_scoring": false,
+      "source_kind": "generated",
+      "qa_status": "approved",
+      "size": [
+        2048,
+        2048
+      ]
+    },
+    {
+      "file": "08_full_body_back_right_3q.png",
+      "category": "full-body",
+      "view": "back-right-3q",
+      "purpose": "Back-right volume guide",
+      "camera": "",
+      "use_for_scoring": false,
+      "source_kind": "generated",
+      "qa_status": "approved",
+      "size": [
+        2048,
+        2048
+      ]
+    },
+    {
+      "file": "09_full_body_top.png",
+      "category": "full-body",
+      "view": "top",
+      "purpose": "Top footprint guide",
+      "camera": "",
+      "use_for_scoring": false,
+      "source_kind": "generated",
+      "qa_status": "approved",
+      "size": [
+        2048,
+        2048
+      ]
+    },
+    {
+      "file": "10_full_body_t_pose.png",
+      "category": "full-body",
+      "view": "t-pose",
+      "purpose": "Humanoid bone placement and skinning guide",
+      "camera": "",
+      "use_for_scoring": false,
+      "source_kind": "generated",
+      "qa_status": "approved",
+      "size": [
+        2048,
+        2048
+      ]
+    },
+    {
+      "file": "11_full_body_relaxed_apose.png",
+      "category": "full-body",
+      "view": "relaxed-a-pose",
+      "purpose": "Rig baseline guide",
+      "camera": "",
+      "use_for_scoring": false,
+      "source_kind": "generated",
+      "qa_status": "approved",
+      "size": [
+        2048,
+        2048
+      ]
+    },
+    {
+      "file": "12_full_body_garment_silhouette.png",
+      "category": "full-body",
+      "view": "garment-silhouette",
+      "purpose": "Oversized garment silhouette guide",
+      "camera": "",
+      "use_for_scoring": false,
+      "source_kind": "generated",
+      "qa_status": "approved",
+      "size": [
+        2048,
+        2048
+      ]
+    },
+    {
+      "file": "13_head_front.png",
+      "category": "head-face",
+      "view": "front",
+      "purpose": "Face fitting",
+      "camera": "face_front",
+      "use_for_scoring": true,
+      "source_kind": "generated",
+      "qa_status": "approved",
+      "size": [
+        2048,
+        2048
+      ]
+    },
+    {
+      "file": "14_head_back.png",
+      "category": "head-face",
+      "view": "back",
+      "purpose": "Back bob close-up",
+      "camera": "",
+      "use_for_scoring": false,
+      "source_kind": "generated",
+      "qa_status": "approved",
+      "size": [
+        2048,
+        2048
+      ]
+    },
+    {
+      "file": "15_head_left.png",
+      "category": "head-face",
+      "view": "left",
+      "purpose": "Left profile guide",
+      "camera": "",
+      "use_for_scoring": false,
+      "source_kind": "generated",
+      "qa_status": "approved",
+      "size": [
+        2048,
+        2048
+      ]
+    },
+    {
+      "file": "16_head_right.png",
+      "category": "head-face",
+      "view": "right",
+      "purpose": "Right profile guide",
+      "camera": "",
+      "use_for_scoring": false,
+      "source_kind": "generated",
+      "qa_status": "approved",
+      "size": [
+        2048,
+        2048
+      ]
+    },
+    {
+      "file": "17_head_front_left_3q.png",
+      "category": "head-face",
+      "view": "front-left-3q",
+      "purpose": "Left cheek and glasses guide",
+      "camera": "",
+      "use_for_scoring": false,
+      "source_kind": "generated",
+      "qa_status": "approved",
+      "size": [
+        2048,
+        2048
+      ]
+    },
+    {
+      "file": "18_head_front_right_3q.png",
+      "category": "head-face",
+      "view": "front-right-3q",
+      "purpose": "Right cheek and glasses guide",
+      "camera": "",
+      "use_for_scoring": false,
+      "source_kind": "generated",
+      "qa_status": "approved",
+      "size": [
+        2048,
+        2048
+      ]
+    },
+    {
+      "file": "19_head_top.png",
+      "category": "head-face",
+      "view": "top-head",
+      "purpose": "Crown fitting",
+      "camera": "head_top",
+      "use_for_scoring": true,
+      "source_kind": "generated",
+      "qa_status": "approved",
+      "size": [
+        2048,
+        2048
+      ]
+    },
+    {
+      "file": "20_eye_pair.png",
+      "category": "head-face",
+      "view": "eye-pair",
+      "purpose": "Eye spacing and shape",
+      "camera": "",
+      "use_for_scoring": false,
+      "source_kind": "generated",
+      "qa_status": "approved",
+      "size": [
+        2048,
+        2048
+      ]
+    },
+    {
+      "file": "21_iris_teal.png",
+      "category": "head-face",
+      "view": "iris",
+      "purpose": "Teal-green iris material",
+      "camera": "",
+      "use_for_scoring": false,
+      "source_kind": "generated",
+      "qa_status": "approved",
+      "size": [
+        2048,
+        2048
+      ]
+    },
+    {
+      "file": "22_glasses_worn_front.png",
+      "category": "head-face",
+      "view": "glasses-worn-front",
+      "purpose": "Glasses face alignment",
+      "camera": "",
+      "use_for_scoring": false,
+      "source_kind": "generated",
+      "qa_status": "approved",
+      "size": [
+        2048,
+        2048
+      ]
+    },
+    {
+      "file": "23_glasses_worn_side.png",
+      "category": "head-face",
+      "view": "glasses-worn-side",
+      "purpose": "Temple arm alignment",
+      "camera": "",
+      "use_for_scoring": false,
+      "source_kind": "generated",
+      "qa_status": "approved",
+      "size": [
+        2048,
+        2048
+      ]
+    },
+    {
+      "file": "24_cheek_blush.png",
+      "category": "head-face",
+      "view": "cheek-blush",
+      "purpose": "Subtle blush placement",
+      "camera": "",
+      "use_for_scoring": false,
+      "source_kind": "generated",
+      "qa_status": "approved",
+      "size": [
+        2048,
+        2048
+      ]
+    },
+    {
+      "file": "25_hair_cap.png",
+      "category": "hair",
+      "view": "hair-cap",
+      "purpose": "Base cap construction",
+      "camera": "",
+      "use_for_scoring": false,
+      "source_kind": "generated",
+      "qa_status": "approved",
+      "size": [
+        2048,
+        2048
+      ]
+    },
+    {
+      "file": "26_hair_crown.png",
+      "category": "hair",
+      "view": "crown",
+      "purpose": "Crown parting",
+      "camera": "",
+      "use_for_scoring": false,
+      "source_kind": "generated",
+      "qa_status": "approved",
+      "size": [
+        2048,
+        2048
+      ]
+    },
+    {
+      "file": "27_hair_bangs_center.png",
+      "category": "hair",
+      "view": "bangs-center",
+      "purpose": "Central bangs",
+      "camera": "",
+      "use_for_scoring": false,
+      "source_kind": "generated",
+      "qa_status": "approved",
+      "size": [
+        2048,
+        2048
+      ]
+    },
+    {
+      "file": "28_hair_bangs_left.png",
+      "category": "hair",
+      "view": "bangs-left",
+      "purpose": "Left bang cluster",
+      "camera": "",
+      "use_for_scoring": false,
+      "source_kind": "generated",
+      "qa_status": "approved",
+      "size": [
+        2048,
+        2048
+      ]
+    },
+    {
+      "file": "29_hair_bangs_right.png",
+      "category": "hair",
+      "view": "bangs-right",
+      "purpose": "Right bang cluster",
+      "camera": "",
+      "use_for_scoring": false,
+      "source_kind": "generated",
+      "qa_status": "approved",
+      "size": [
+        2048,
+        2048
+      ]
+    },
+    {
+      "file": "30_hair_bangs_side.png",
+      "category": "hair",
+      "view": "bangs-side",
+      "purpose": "Bang projection",
+      "camera": "",
+      "use_for_scoring": false,
+      "source_kind": "generated",
+      "qa_status": "approved",
+      "size": [
+        2048,
+        2048
+      ]
+    },
+    {
+      "file": "31_hair_side_lock_left.png",
+      "category": "hair",
+      "view": "side-lock-left",
+      "purpose": "Left side lock",
+      "camera": "",
+      "use_for_scoring": false,
+      "source_kind": "generated",
+      "qa_status": "approved",
+      "size": [
+        2048,
+        2048
+      ]
+    },
+    {
+      "file": "32_hair_side_lock_right.png",
+      "category": "hair",
+      "view": "side-lock-right",
+      "purpose": "Right side lock",
+      "camera": "",
+      "use_for_scoring": false,
+      "source_kind": "generated",
+      "qa_status": "approved",
+      "size": [
+        2048,
+        2048
+      ]
+    },
+    {
+      "file": "33_hair_bob_back.png",
+      "category": "hair",
+      "view": "bob-back",
+      "purpose": "Back bob layers",
+      "camera": "",
+      "use_for_scoring": false,
+      "source_kind": "generated",
+      "qa_status": "approved",
+      "size": [
+        2048,
+        2048
+      ]
+    },
+    {
+      "file": "34_hair_bob_left.png",
+      "category": "hair",
+      "view": "bob-left",
+      "purpose": "Left bob layers",
+      "camera": "",
+      "use_for_scoring": false,
+      "source_kind": "generated",
+      "qa_status": "approved",
+      "size": [
+        2048,
+        2048
+      ]
+    },
+    {
+      "file": "35_hair_bob_right.png",
+      "category": "hair",
+      "view": "bob-right",
+      "purpose": "Right bob layers",
+      "camera": "",
+      "use_for_scoring": false,
+      "source_kind": "generated",
+      "qa_status": "approved",
+      "size": [
+        2048,
+        2048
+      ]
+    },
+    {
+      "file": "36_hair_lower_tips.png",
+      "category": "hair",
+      "view": "lower-tips",
+      "purpose": "Blue-violet tips",
+      "camera": "",
+      "use_for_scoring": false,
+      "source_kind": "generated",
+      "qa_status": "approved",
+      "size": [
+        2048,
+        2048
+      ]
+    },
+    {
+      "file": "37_hair_gradient_material.png",
+      "category": "hair",
+      "view": "gradient-material",
+      "purpose": "Hair gradient material",
+      "camera": "",
+      "use_for_scoring": false,
+      "source_kind": "generated",
+      "qa_status": "approved",
+      "size": [
+        2048,
+        2048
+      ]
+    },
+    {
+      "file": "38_ahoge_front.png",
+      "category": "hair",
+      "view": "ahoge-front",
+      "purpose": "Zigzag ahoge front",
+      "camera": "",
+      "use_for_scoring": false,
+      "source_kind": "generated",
+      "qa_status": "approved",
+      "size": [
+        2048,
+        2048
+      ]
+    },
+    {
+      "file": "39_ahoge_side.png",
+      "category": "hair",
+      "view": "ahoge-side",
+      "purpose": "Zigzag ahoge side",
+      "camera": "",
+      "use_for_scoring": false,
+      "source_kind": "generated",
+      "qa_status": "approved",
+      "size": [
+        2048,
+        2048
+      ]
+    },
+    {
+      "file": "40_ahoge_top.png",
+      "category": "hair",
+      "view": "ahoge-top",
+      "purpose": "Ahoge root top",
+      "camera": "",
+      "use_for_scoring": false,
+      "source_kind": "generated",
+      "qa_status": "approved",
+      "size": [
+        2048,
+        2048
+      ]
+    },
+    {
+      "file": "41_hairclip_placement.png",
+      "category": "hair",
+      "view": "hairclip-placement",
+      "purpose": "Front-left clip placement",
+      "camera": "",
+      "use_for_scoring": false,
+      "source_kind": "generated",
+      "qa_status": "approved",
+      "size": [
+        2048,
+        2048
+      ]
+    },
+    {
+      "file": "42_hairclip_attachment.png",
+      "category": "hair",
+      "view": "hairclip-attachment",
+      "purpose": "Hairclip pin attachment",
+      "camera": "",
+      "use_for_scoring": false,
+      "source_kind": "generated",
+      "qa_status": "approved",
+      "size": [
+        2048,
+        2048
+      ]
+    },
+    {
+      "file": "43_hoodie_front.png",
+      "category": "outfit",
+      "view": "hoodie-front",
+      "purpose": "Hoodie front construction",
+      "camera": "",
+      "use_for_scoring": false,
+      "source_kind": "generated",
+      "qa_status": "approved",
+      "size": [
+        2048,
+        2048
+      ]
+    },
+    {
+      "file": "44_hoodie_back.png",
+      "category": "outfit",
+      "view": "hoodie-back",
+      "purpose": "Hoodie back construction",
+      "camera": "",
+      "use_for_scoring": false,
+      "source_kind": "generated",
+      "qa_status": "approved",
+      "size": [
+        2048,
+        2048
+      ]
+    },
+    {
+      "file": "45_hoodie_side.png",
+      "category": "outfit",
+      "view": "hoodie-side",
+      "purpose": "Hoodie side construction",
+      "camera": "",
+      "use_for_scoring": false,
+      "source_kind": "generated",
+      "qa_status": "approved",
+      "size": [
+        2048,
+        2048
+      ]
+    },
+    {
+      "file": "46_hoodie_open_state.png",
+      "category": "outfit",
+      "view": "hoodie-open",
+      "purpose": "Open hoodie layering",
+      "camera": "",
+      "use_for_scoring": false,
+      "source_kind": "generated",
+      "qa_status": "approved",
+      "size": [
+        2048,
+        2048
+      ]
+    },
+    {
+      "file": "47_collar_front.png",
+      "category": "outfit",
+      "view": "collar-front",
+      "purpose": "Collar front fold",
+      "camera": "",
+      "use_for_scoring": false,
+      "source_kind": "generated",
+      "qa_status": "approved",
+      "size": [
+        2048,
+        2048
+      ]
+    },
+    {
+      "file": "48_cuff_charcoal.png",
+      "category": "outfit",
+      "view": "cuff",
+      "purpose": "Ribbed cuff",
+      "camera": "",
+      "use_for_scoring": false,
+      "source_kind": "generated",
+      "qa_status": "approved",
+      "size": [
+        2048,
+        2048
+      ]
+    },
+    {
+      "file": "49_shorts_front.png",
+      "category": "outfit",
+      "view": "shorts-front",
+      "purpose": "Shorts front",
+      "camera": "",
+      "use_for_scoring": false,
+      "source_kind": "generated",
+      "qa_status": "approved",
+      "size": [
+        2048,
+        2048
+      ]
+    },
+    {
+      "file": "50_sneaker_side.png",
+      "category": "outfit",
+      "view": "sneaker-side",
+      "purpose": "Sneaker side",
+      "camera": "",
+      "use_for_scoring": false,
+      "source_kind": "generated",
+      "qa_status": "approved",
+      "size": [
+        2048,
+        2048
+      ]
+    }
+  ]
+}

@@ -1,0 +1,9 @@
+PySide6>=6.8,<7
+google-genai>=1.0,<2
+keyring>=25,<26
+python-dotenv>=1.0,<2
+pygame>=2.6,<3
+google-cloud-speech>=2.33,<3
+PyAudio>=0.2.14,<1
+websockets>=15,<16
+pytest>=8,<9

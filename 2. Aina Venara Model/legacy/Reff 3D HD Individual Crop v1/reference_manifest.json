@@ -1,0 +1,913 @@
+{
+  "schema_version": 1,
+  "character": "Aina Venara",
+  "canonical_height_cm": 152,
+  "image_size": [
+    2048,
+    2048
+  ],
+  "background": "#FFFFFF",
+  "source_strategy": "canonical-sheet crop and LANCZOS upscale; no identity drift",
+  "references": [
+    {
+      "file": "01_full_body_front.png",
+      "category": "full-body",
+      "view": "front",
+      "source": "01_Aina_FullBody_Orthographic.png",
+      "crop": [
+        20,
+        150,
+        335,
+        1215
+      ],
+      "purpose": "Primary silhouette, scale, floor and A-pose alignment",
+      "camera": "body_front",
+      "mask": "white-background",
+      "flip_x": false,
+      "size": [
+        2048,
+        2048
+      ]
+    },
+    {
+      "file": "02_full_body_left.png",
+      "category": "full-body",
+      "view": "left",
+      "source": "01_Aina_FullBody_Orthographic.png",
+      "crop": [
+        330,
+        150,
+        620,
+        1215
+      ],
+      "purpose": "Left profile silhouette and garment depth",
+      "camera": "body_left",
+      "mask": "white-background",
+      "flip_x": false,
+      "size": [
+        2048,
+        2048
+      ]
+    },
+    {
+      "file": "03_full_body_right.png",
+      "category": "full-body",
+      "view": "right",
+      "source": "01_Aina_FullBody_Orthographic.png",
+      "crop": [
+        620,
+        150,
+        905,
+        1215
+      ],
+      "purpose": "Right profile silhouette and accessory placement",
+      "camera": "body_right",
+      "mask": "white-background",
+      "flip_x": false,
+      "size": [
+        2048,
+        2048
+      ]
+    },
+    {
+      "file": "04_full_body_back.png",
+      "category": "full-body",
+      "view": "back",
+      "source": "01_Aina_FullBody_Orthographic.png",
+      "crop": [
+        900,
+        150,
+        1190,
+        1215
+      ],
+      "purpose": "Back silhouette, bob and hoodie volume",
+      "camera": "body_back",
+      "mask": "white-background",
+      "flip_x": false,
+      "size": [
+        2048,
+        2048
+      ]
+    },
+    {
+      "file": "05_full_body_front_left_3q.png",
+      "category": "full-body",
+      "view": "front-left-3q",
+      "source": "01_Aina_FullBody_Orthographic.png",
+      "crop": [
+        1180,
+        150,
+        1475,
+        1215
+      ],
+      "purpose": "Three-quarter silhouette and front garment depth",
+      "camera": "body_front_left_3q",
+      "mask": "white-background",
+      "flip_x": false,
+      "size": [
+        2048,
+        2048
+      ]
+    },
+    {
+      "file": "06_full_body_front_right_3q.png",
+      "category": "full-body",
+      "view": "front-right-3q",
+      "source": "01_Aina_FullBody_Orthographic.png",
+      "crop": [
+        1180,
+        150,
+        1475,
+        1215
+      ],
+      "purpose": "Mirrored opposite three-quarter silhouette guide",
+      "camera": "body_front_right_3q",
+      "mask": "white-background",
+      "flip_x": true,
+      "size": [
+        2048,
+        2048
+      ]
+    },
+    {
+      "file": "07_full_body_back_left_3q.png",
+      "category": "full-body",
+      "view": "back-left-3q",
+      "source": "01_Aina_FullBody_Orthographic.png",
+      "crop": [
+        900,
+        150,
+        1190,
+        1215
+      ],
+      "purpose": "Mirrored back silhouette guide for asymmetric review",
+      "camera": "body_back_left_3q",
+      "mask": "white-background",
+      "flip_x": true,
+      "size": [
+        2048,
+        2048
+      ]
+    },
+    {
+      "file": "08_full_body_top.png",
+      "category": "full-body",
+      "view": "top",
+      "source": "01_Aina_FullBody_Orthographic.png",
+      "crop": [
+        1450,
+        150,
+        1780,
+        610
+      ],
+      "purpose": "Top-head and shoulder footprint",
+      "camera": "body_top",
+      "mask": "white-background",
+      "flip_x": false,
+      "size": [
+        2048,
+        2048
+      ]
+    },
+    {
+      "file": "09_head_front.png",
+      "category": "head-face",
+      "view": "front",
+      "source": "02_Aina_Head_Face_Detail.png",
+      "crop": [
+        80,
+        135,
+        500,
+        655
+      ],
+      "purpose": "Canonical face identity and glasses placement",
+      "camera": "face_front",
+      "mask": "white-background",
+      "flip_x": false,
+      "size": [
+        2048,
+        2048
+      ]
+    },
+    {
+      "file": "10_head_left.png",
+      "category": "head-face",
+      "view": "left",
+      "source": "02_Aina_Head_Face_Detail.png",
+      "crop": [
+        500,
+        135,
+        865,
+        655
+      ],
+      "purpose": "Head profile, nose, ear and bob depth",
+      "camera": "face_left",
+      "mask": "white-background",
+      "flip_x": false,
+      "size": [
+        2048,
+        2048
+      ]
+    },
+    {
+      "file": "11_head_right.png",
+      "category": "head-face",
+      "view": "right",
+      "source": "02_Aina_Head_Face_Detail.png",
+      "crop": [
+        875,
+        135,
+        1250,
+        655
+      ],
+      "purpose": "Opposite head profile and glasses side fit",
+      "camera": "face_right",
+      "mask": "white-background",
+      "flip_x": false,
+      "size": [
+        2048,
+        2048
+      ]
+    },
+    {
+      "file": "12_head_back.png",
+      "category": "head-face",
+      "view": "back",
+      "source": "02_Aina_Head_Face_Detail.png",
+      "crop": [
+        475,
+        655,
+        875,
+        1185
+      ],
+      "purpose": "Back bob silhouette and tip distribution",
+      "camera": "face_back",
+      "mask": "white-background",
+      "flip_x": false,
+      "size": [
+        2048,
+        2048
+      ]
+    },
+    {
+      "file": "13_head_front_left_3q.png",
+      "category": "head-face",
+      "view": "front-left-3q",
+      "source": "02_Aina_Head_Face_Detail.png",
+      "crop": [
+        80,
+        655,
+        485,
+        1185
+      ],
+      "purpose": "Cheek contour and frame perspective",
+      "camera": "face_front_left_3q",
+      "mask": "white-background",
+      "flip_x": false,
+      "size": [
+        2048,
+        2048
+      ]
+    },
+    {
+      "file": "14_head_top.png",
+      "category": "head-face",
+      "view": "top",
+      "source": "02_Aina_Head_Face_Detail.png",
+      "crop": [
+        875,
+        655,
+        1285,
+        1185
+      ],
+      "purpose": "Hair crown, parting and ahoge root",
+      "camera": "face_top",
+      "mask": "white-background",
+      "flip_x": false,
+      "size": [
+        2048,
+        2048
+      ]
+    },
+    {
+      "file": "15_eye_teal_closeup.png",
+      "category": "head-face",
+      "view": "eye-closeup",
+      "source": "02_Aina_Head_Face_Detail.png",
+      "crop": [
+        1300,
+        250,
+        1695,
+        610
+      ],
+      "purpose": "Iris color, sclera and eyelash styling",
+      "camera": "detail_eye",
+      "mask": "white-background",
+      "flip_x": false,
+      "size": [
+        2048,
+        2048
+      ]
+    },
+    {
+      "file": "16_glasses_worn_side.png",
+      "category": "head-face",
+      "view": "glasses-side",
+      "source": "02_Aina_Head_Face_Detail.png",
+      "crop": [
+        510,
+        185,
+        800,
+        585
+      ],
+      "purpose": "Temple arm and bridge alignment on face",
+      "camera": "detail_glasses_side",
+      "mask": "white-background",
+      "flip_x": false,
+      "size": [
+        2048,
+        2048
+      ]
+    },
+    {
+      "file": "17_hair_cap_top.png",
+      "category": "hair",
+      "view": "cap-top",
+      "source": "06_Aina_Hair_Construction.png",
+      "crop": [
+        70,
+        625,
+        410,
+        1135
+      ],
+      "purpose": "Crown cap flow and parting",
+      "camera": "detail_hair_top",
+      "mask": "white-background",
+      "flip_x": false,
+      "size": [
+        2048,
+        2048
+      ]
+    },
+    {
+      "file": "18_hair_bangs_front.png",
+      "category": "hair",
+      "view": "bangs-front",
+      "source": "06_Aina_Hair_Construction.png",
+      "crop": [
+        80,
+        150,
+        420,
+        620
+      ],
+      "purpose": "Asymmetric bang clusters and eye clearance",
+      "camera": "detail_hair_front",
+      "mask": "white-background",
+      "flip_x": false,
+      "size": [
+        2048,
+        2048
+      ]
+    },
+    {
+      "file": "19_hair_bangs_side.png",
+      "category": "hair",
+      "view": "bangs-side",
+      "source": "06_Aina_Hair_Construction.png",
+      "crop": [
+        430,
+        150,
+        760,
+        515
+      ],
+      "purpose": "Bang projection and side-lock transition",
+      "camera": "detail_hair_side",
+      "mask": "white-background",
+      "flip_x": false,
+      "size": [
+        2048,
+        2048
+      ]
+    },
+    {
+      "file": "20_hair_side_lock_left.png",
+      "category": "hair",
+      "view": "side-lock-left",
+      "source": "06_Aina_Hair_Construction.png",
+      "crop": [
+        430,
+        280,
+        760,
+        620
+      ],
+      "purpose": "Left side-lock taper",
+      "camera": "detail_hair_side_lock_left",
+      "mask": "white-background",
+      "flip_x": false,
+      "size": [
+        2048,
+        2048
+      ]
+    },
+    {
+      "file": "21_hair_side_lock_right.png",
+      "category": "hair",
+      "view": "side-lock-right",
+      "source": "06_Aina_Hair_Construction.png",
+      "crop": [
+        770,
+        150,
+        1100,
+        620
+      ],
+      "purpose": "Right side-lock taper",
+      "camera": "detail_hair_side_lock_right",
+      "mask": "white-background",
+      "flip_x": false,
+      "size": [
+        2048,
+        2048
+      ]
+    },
+    {
+      "file": "22_hair_bob_back.png",
+      "category": "hair",
+      "view": "bob-back",
+      "source": "06_Aina_Hair_Construction.png",
+      "crop": [
+        1110,
+        150,
+        1450,
+        620
+      ],
+      "purpose": "Layered back bob silhouette",
+      "camera": "detail_hair_back",
+      "mask": "white-background",
+      "flip_x": false,
+      "size": [
+        2048,
+        2048
+      ]
+    },
+    {
+      "file": "23_hair_gradient_tips.png",
+      "category": "hair",
+      "view": "gradient-tips",
+      "source": "09_Aina_Hair_Garment_Dimensions.png",
+      "crop": [
+        70,
+        335,
+        760,
+        610
+      ],
+      "purpose": "Blue-violet lower-tip gradient depth",
+      "camera": "detail_hair_tips",
+      "mask": "white-background",
+      "flip_x": false,
+      "size": [
+        2048,
+        2048
+      ]
+    },
+    {
+      "file": "24_hair_ahoge_zigzag.png",
+      "category": "hair",
+      "view": "ahoge",
+      "source": "09_Aina_Hair_Garment_Dimensions.png",
+      "crop": [
+        760,
+        325,
+        1090,
+        615
+      ],
+      "purpose": "Signature zigzag ahoge shape",
+      "camera": "detail_ahoge",
+      "mask": "white-background",
+      "flip_x": false,
+      "size": [
+        2048,
+        2048
+      ]
+    },
+    {
+      "file": "25_hairclip_position.png",
+      "category": "hair",
+      "view": "hairclip-position",
+      "source": "02_Aina_Head_Face_Detail.png",
+      "crop": [
+        250,
+        170,
+        490,
+        430
+      ],
+      "purpose": "Number-3 hairclip placement on front-left hair",
+      "camera": "detail_hairclip_position",
+      "mask": "white-background",
+      "flip_x": false,
+      "size": [
+        2048,
+        2048
+      ]
+    },
+    {
+      "file": "26_hoodie_front.png",
+      "category": "outfit",
+      "view": "hoodie-front",
+      "source": "03_Aina_Outfit_Construction.png",
+      "crop": [
+        1030,
+        130,
+        1370,
+        580
+      ],
+      "purpose": "Open hoodie front, zipper and collar",
+      "camera": "detail_hoodie_front",
+      "mask": "white-background",
+      "flip_x": false,
+      "size": [
+        2048,
+        2048
+      ]
+    },
+    {
+      "file": "27_hoodie_back.png",
+      "category": "outfit",
+      "view": "hoodie-back",
+      "source": "03_Aina_Outfit_Construction.png",
+      "crop": [
+        1380,
+        130,
+        1730,
+        580
+      ],
+      "purpose": "Back garment volume and hem",
+      "camera": "detail_hoodie_back",
+      "mask": "white-background",
+      "flip_x": false,
+      "size": [
+        2048,
+        2048
+      ]
+    },
+    {
+      "file": "28_hoodie_side.png",
+      "category": "outfit",
+      "view": "hoodie-side",
+      "source": "03_Aina_Outfit_Construction.png",
+      "crop": [
+        1030,
+        560,
+        1270,
+        920
+      ],
+      "purpose": "Dropped shoulder, sleeve and hem depth",
+      "camera": "detail_hoodie_side",
+      "mask": "white-background",
+      "flip_x": false,
+      "size": [
+        2048,
+        2048
+      ]
+    },
+    {
+      "file": "29_collar_front.png",
+      "category": "outfit",
+      "view": "collar-front",
+      "source": "09_Aina_Hair_Garment_Dimensions.png",
+      "crop": [
+        520,
+        600,
+        810,
+        805
+      ],
+      "purpose": "Charcoal off-shoulder collar front fold",
+      "camera": "detail_collar_front",
+      "mask": "white-background",
+      "flip_x": false,
+      "size": [
+        2048,
+        2048
+      ]
+    },
+    {
+      "file": "30_collar_back.png",
+      "category": "outfit",
+      "view": "collar-back",
+      "source": "09_Aina_Hair_Garment_Dimensions.png",
+      "crop": [
+        810,
+        600,
+        1095,
+        805
+      ],
+      "purpose": "Charcoal off-shoulder collar back fold",
+      "camera": "detail_collar_back",
+      "mask": "white-background",
+      "flip_x": false,
+      "size": [
+        2048,
+        2048
+      ]
+    },
+    {
+      "file": "31_sleeve_volume.png",
+      "category": "outfit",
+      "view": "sleeve",
+      "source": "03_Aina_Outfit_Construction.png",
+      "crop": [
+        1040,
+        555,
+        1265,
+        890
+      ],
+      "purpose": "Cyan sleeve volume and gathering",
+      "camera": "detail_sleeve",
+      "mask": "white-background",
+      "flip_x": false,
+      "size": [
+        2048,
+        2048
+      ]
+    },
+    {
+      "file": "32_cuff_charcoal.png",
+      "category": "outfit",
+      "view": "cuff",
+      "source": "09_Aina_Hair_Garment_Dimensions.png",
+      "crop": [
+        135,
+        930,
+        310,
+        1080
+      ],
+      "purpose": "Charcoal ribbed cuff",
+      "camera": "detail_cuff",
+      "mask": "white-background",
+      "flip_x": false,
+      "size": [
+        2048,
+        2048
+      ]
+    },
+    {
+      "file": "33_zipper_detail.png",
+      "category": "outfit",
+      "view": "zipper",
+      "source": "09_Aina_Hair_Garment_Dimensions.png",
+      "crop": [
+        310,
+        800,
+        530,
+        1080
+      ],
+      "purpose": "Simple zipper and edge construction",
+      "camera": "detail_zipper",
+      "mask": "white-background",
+      "flip_x": false,
+      "size": [
+        2048,
+        2048
+      ]
+    },
+    {
+      "file": "34_pocket_detail.png",
+      "category": "outfit",
+      "view": "pocket",
+      "source": "09_Aina_Hair_Garment_Dimensions.png",
+      "crop": [
+        535,
+        800,
+        740,
+        1080
+      ],
+      "purpose": "Slanted charcoal pocket opening",
+      "camera": "detail_pocket",
+      "mask": "white-background",
+      "flip_x": false,
+      "size": [
+        2048,
+        2048
+      ]
+    },
+    {
+      "file": "35_inner_shirt_straps.png",
+      "category": "outfit",
+      "view": "inner-shirt",
+      "source": "09_Aina_Hair_Garment_Dimensions.png",
+      "crop": [
+        740,
+        800,
+        1090,
+        1080
+      ],
+      "purpose": "White shirt neckline and pink camisole straps",
+      "camera": "detail_inner_shirt",
+      "mask": "white-background",
+      "flip_x": false,
+      "size": [
+        2048,
+        2048
+      ]
+    },
+    {
+      "file": "36_shorts_dark.png",
+      "category": "outfit",
+      "view": "shorts",
+      "source": "03_Aina_Outfit_Construction.png",
+      "crop": [
+        1010,
+        900,
+        1300,
+        1165
+      ],
+      "purpose": "Dark shorts waist, hem and pocket construction",
+      "camera": "detail_shorts",
+      "mask": "white-background",
+      "flip_x": false,
+      "size": [
+        2048,
+        2048
+      ]
+    },
+    {
+      "file": "37_hairclip_number_3.png",
+      "category": "accessory-extremity",
+      "view": "hairclip-isolated",
+      "source": "04_Aina_Accessories_Materials.png",
+      "crop": [
+        70,
+        145,
+        545,
+        480
+      ],
+      "purpose": "Metallic number-3 clip geometry",
+      "camera": "detail_hairclip",
+      "mask": "white-background",
+      "flip_x": false,
+      "size": [
+        2048,
+        2048
+      ]
+    },
+    {
+      "file": "38_glasses_pink.png",
+      "category": "accessory-extremity",
+      "view": "glasses-isolated",
+      "source": "04_Aina_Accessories_Materials.png",
+      "crop": [
+        555,
+        145,
+        930,
+        480
+      ],
+      "purpose": "Thin rounded pink glasses frame",
+      "camera": "detail_glasses",
+      "mask": "white-background",
+      "flip_x": false,
+      "size": [
+        2048,
+        2048
+      ]
+    },
+    {
+      "file": "39_hand_dorsal.png",
+      "category": "accessory-extremity",
+      "view": "hand-dorsal",
+      "source": "10_Aina_Hands_Feet_Micro_Detail.png",
+      "crop": [
+        95,
+        260,
+        395,
+        620
+      ],
+      "purpose": "Relaxed dorsal hand topology",
+      "camera": "detail_hand_dorsal",
+      "mask": "white-background",
+      "flip_x": false,
+      "size": [
+        2048,
+        2048
+      ]
+    },
+    {
+      "file": "40_hand_palm.png",
+      "category": "accessory-extremity",
+      "view": "hand-palm",
+      "source": "10_Aina_Hands_Feet_Micro_Detail.png",
+      "crop": [
+        650,
+        260,
+        940,
+        620
+      ],
+      "purpose": "Palm and finger proportions",
+      "camera": "detail_hand_palm",
+      "mask": "white-background",
+      "flip_x": false,
+      "size": [
+        2048,
+        2048
+      ]
+    },
+    {
+      "file": "41_hand_side.png",
+      "category": "accessory-extremity",
+      "view": "hand-side",
+      "source": "10_Aina_Hands_Feet_Micro_Detail.png",
+      "crop": [
+        390,
+        260,
+        650,
+        620
+      ],
+      "purpose": "Side profile and finger taper",
+      "camera": "detail_hand_side",
+      "mask": "white-background",
+      "flip_x": false,
+      "size": [
+        2048,
+        2048
+      ]
+    },
+    {
+      "file": "42_socks_white.png",
+      "category": "accessory-extremity",
+      "view": "socks",
+      "source": "10_Aina_Hands_Feet_Micro_Detail.png",
+      "crop": [
+        430,
+        765,
+        870,
+        1105
+      ],
+      "purpose": "White ribbed crew sock shaft",
+      "camera": "detail_socks",
+      "mask": "white-background",
+      "flip_x": false,
+      "size": [
+        2048,
+        2048
+      ]
+    },
+    {
+      "file": "43_sneakers_front.png",
+      "category": "accessory-extremity",
+      "view": "sneaker-front",
+      "source": "10_Aina_Hands_Feet_Micro_Detail.png",
+      "crop": [
+        75,
+        575,
+        320,
+        850
+      ],
+      "purpose": "White sneaker toe, lacing and sole",
+      "camera": "detail_sneaker_front",
+      "mask": "white-background",
+      "flip_x": false,
+      "size": [
+        2048,
+        2048
+      ]
+    },
+    {
+      "file": "44_sneakers_side.png",
+      "category": "accessory-extremity",
+      "view": "sneaker-side",
+      "source": "10_Aina_Hands_Feet_Micro_Detail.png",
+      "crop": [
+        310,
+        575,
+        700,
+        850
+      ],
+      "purpose": "White sneaker side silhouette",
+      "camera": "detail_sneaker_side",
+      "mask": "white-background",
+      "flip_x": false,
+      "size": [
+        2048,
+        2048
+      ]
+    },
+    {
+      "file": "45_sneakers_back.png",
+      "category": "accessory-extremity",
+      "view": "sneaker-back",
+      "source": "10_Aina_Hands_Feet_Micro_Detail.png",
+      "crop": [
+        680,
+        575,
+        920,
+        850
+      ],
+      "purpose": "White sneaker heel construction",
+      "camera": "detail_sneaker_back",
+      "mask": "white-background",
+      "flip_x": false,
+      "size": [
+        2048,
+        2048
+      ]
+    }
+  ]
+}

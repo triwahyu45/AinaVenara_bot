@@ -1,0 +1,4 @@
+mss>=10,<11
+opencv-python>=4.10,<5
+pynput>=1.8,<2
+pytest>=8,<9
