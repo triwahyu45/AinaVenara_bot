@@ -1,0 +1,15 @@
+{
+  "BOT_TOKEN": "YOUR_TELEGRAM_BOT_TOKEN",
+  "ALLOWED_USERS": [991501277],
+  "GEMINI_API_KEY": "YOUR_GEMINI_API_KEY",
+  "PRIMARY_ENGINE": "gemini",
+  "GEMINI_MODELS": [
+    "models/gemini-flash-latest",
+    "models/gemini-flash-lite-latest",
+    "models/gemini-pro-latest"
+  ],
+  "OLLAMA_HOST": "http://127.0.0.1:11434",
+  "OLLAMA_MODEL": "qwen2:1.5b",
+  "AUTO_FALLBACK_TO_LOCAL": true,
+  "MAX_HISTORY": 12
+}
