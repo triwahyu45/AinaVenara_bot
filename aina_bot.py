@@ -34,7 +34,8 @@ ALLOWED_USERS = config.get("ALLOWED_USERS", [991501277])
 
 bot = telebot.TeleBot(BOT_TOKEN, parse_mode=None)
 engine = AinaAIEngine(CONFIG_PATH)
-VOICE_NOTE_ENABLED = True
+# Konfigurasi status pengiriman Voice Note (Default: False / On-Demand saat disuruh VN)
+VOICE_NOTE_ENABLED = False
 CURRENT_VOICE_MODE = "gemini" # 'gemini' (Gemini Native Speech) atau 'neural' (Indonesian Neural)
 
 def is_authorized(msg):
@@ -54,14 +55,16 @@ def is_authorized(msg):
 def main_keyboard():
     markup = types.ReplyKeyboardMarkup(resize_keyboard=True, row_width=2)
     b1 = types.KeyboardButton("🌸 Ngobrol Santai")
-    b2 = types.KeyboardButton("🎙️ Toggle Voice Note")
+    b2 = types.KeyboardButton("🎙️ Mode Voice Note (On/Off)")
     b3 = types.KeyboardButton("🗣️ Switch Engine Suara")
-    b4 = types.KeyboardButton("🤖 Status Otak Aina")
-    b5 = types.KeyboardButton("🔄 Ganti Mesin AI")
-    b6 = types.KeyboardButton("🧹 Reset Obrolan")
+    b4 = types.KeyboardButton("💾 Cek Memori Aina")
+    b5 = types.KeyboardButton("🤖 Status Otak Aina")
+    b6 = types.KeyboardButton("🔄 Ganti Mesin AI")
+    b7 = types.KeyboardButton("🧹 Reset Obrolan")
     markup.add(b1, b2)
     markup.add(b3, b4)
     markup.add(b5, b6)
+    markup.add(b7)
     return markup
 
 @bot.message_handler(commands=["start"])
@@ -73,7 +76,8 @@ def handle_start(msg):
         "Aina siap menemani Kak Wahyu untuk:\n"
         "• 🤖 Coding & Debugging (Python, C++, ROS, Web, Bot)\n"
         "• 🦾 Diskusi Robotika & Mekatronika (ESP32, STM32, Sensor TA)\n"
-        "• 🎙️ **Voice Note (VN)** suara Aina (Gemini Native Speech + Neural Indonesian)\n"
+        "• 🎙️ **Voice Note (VN)** suara Aina *(Otomatis aktif saat Kakak minta VN atau ketik suara)*\n"
+        "• 💾 **Long-Term Memory** *(Semua riwayat percakapan tersimpan permanen & bisa diakses kapan saja!)*\n"
         "• 🧠 Curhat, ngobrol santai, dan penyemangat hari-hari Kak Wahyu\n\n"
         "Otak Aina ditenagai oleh **Dual Engine AI**:\n"
         "1. ☁️ *Gemini Cloud AI* (Model Tercepat & Paling Cerdas)\n"
@@ -90,7 +94,10 @@ def handle_vn_toggle(msg):
     if not is_authorized(msg): return
     global VOICE_NOTE_ENABLED
     VOICE_NOTE_ENABLED = not VOICE_NOTE_ENABLED
-    status_str = "AKTIF 🎙️ (Aina akan selalu kirim VN suara imutnya!)" if VOICE_NOTE_ENABLED else "NONAKTIF 🔕 (Hanya teks biasa)"
+    if VOICE_NOTE_ENABLED:
+        status_str = "SELALU KIRIM VN 🎙️ (Tiap chat akan dibalas dengan suara)"
+    else:
+        status_str = "ON-DEMAND 💬 (VN hanya dikirim saat Kak Wahyu menyuruh VN / meminta suara)"
     bot.send_message(msg.chat.id, f"🎙️ *Status Voice Note Aina:* `{status_str}`", parse_mode="Markdown")
 
 @bot.message_handler(commands=["switch_voice", "voice_mode", "suara"])
@@ -105,19 +112,37 @@ def handle_switch_voice(msg):
         text = "🗣️ *Engine Suara Diubah ke:* `Google Gemini Native Speech (Kore)` ☁️🎙️\nAudio di-generate langsung dari server Google Gemini!"
     bot.send_message(msg.chat.id, text, parse_mode="Markdown")
 
+@bot.message_handler(commands=["memory", "memori"])
+def handle_memory(msg):
+    if not is_authorized(msg): return
+    user_data = engine.memory.load_user_data(msg.from_user.id)
+    history = user_data.get("chat_history", [])
+    facts = user_data.get("learned_facts", [])
+    
+    fact_str = "\n".join([f"• {f}" for f in facts]) if facts else "• Belum ada catatan fakta khusus."
+    
+    text = (
+        "💾 *Pusat Memori Jangka Panjang Aina Venara* 🌸\n\n"
+        f"• 📜 **Total Obrolan Tersimpan:** `{len(history)} pesan`\n"
+        f"• 🧠 **Sifat & Fakta yang Diingat:**\n{fact_str}\n\n"
+        "✨ *Semua obrolan dari awal sampai sekarang tersimpan permanen di PC Kak Wahyu dan bisa diakses Aina kapan saja!*"
+    )
+    bot.send_message(msg.chat.id, text, parse_mode="Markdown")
+
 @bot.message_handler(commands=["help"])
 def handle_help(msg):
     if not is_authorized(msg): return
     text = (
         "🌸 *Daftar Perintah Aina Venara:* 🌸\n\n"
         "• `/start` — Sapaan & Menu Utama Aina\n"
-        "• `/vn` — On/Off fitur Voice Note suara Aina\n"
+        "• `/vn` — On/Off mode auto VN (Default: On-Demand saat diminta)\n"
         "• `/switch_voice` — Ganti engine suara (Gemini Native Speech ↔ Indonesian Neural)\n"
+        "• `/memory` — Cek arsip memori & fakta obrolan yang tersimpan\n"
         "• `/status` — Cek status sistem PC, GPU, dan Engine AI yang aktif\n"
         "• `/switch` — Ganti mesin AI (Gemini Cloud ↔ Local GPU Ollama)\n"
-        "• `/reset` — Bersihkan riwayat ingatan obrolan kita\n"
+        "• `/reset` — Bersihkan riwayat percakapan sesi aktif\n"
         "• `/help` — Bantuan daftar perintah\n\n"
-        "Kak Wahyu bisa langsung kirim teks atau voice note kapan saja! 💖"
+        "Kak Wahyu bisa langsung kirim pesan atau minta VN kapan saja! 💖"
     )
     bot.send_message(msg.chat.id, text, parse_mode="Markdown")
 
@@ -128,22 +153,23 @@ def handle_status(msg):
     ram = psutil.virtual_memory().percent
     
     current_eng = engine.current_engine.upper()
-    history_count = len(engine.get_history(msg.from_user.id)) // 2
+    user_data = engine.memory.load_user_data(msg.from_user.id)
+    total_stored = len(user_data.get("chat_history", []))
     vn_engine_name = "Gemini Native Speech (Kore)" if CURRENT_VOICE_MODE == "gemini" else "Indonesian Neural (Gadis)"
-    vn_status = f"Aktif ({vn_engine_name}) 🎙️" if VOICE_NOTE_ENABLED else "Nonaktif 🔕"
+    vn_status = f"Selalu Kirim ({vn_engine_name})" if VOICE_NOTE_ENABLED else f"On-Demand ({vn_engine_name}) 🎙️"
     
     text = (
         "🤖 *Status Sistem & Otak Aina Venara* 🌸\n\n"
         f"• 🧠 **Mesin Chat Aktif:** `{current_eng}`\n"
         f"• 🎙️ **Voice Note Mode:** `{vn_status}`\n"
+        f"• 💾 **Long-Term Memory:** `{total_stored} pesan tersimpan permanen`\n"
         f"• ☁️ **Gemini Cloud Key:** `Terkonfigurasi (Active)`\n"
-        f"• 🎮 **Local GPU Model:** `{engine.ollama_model}`\n"
-        f"• 💾 **Memori Obrolan:** `{history_count} percakapan tersimpan`\n\n"
+        f"• 🎮 **Local GPU Model:** `{engine.ollama_model}`\n\n"
         "🖥️ **Kesehatan PC Kak Wahyu:**\n"
         f"• CPU Load: `{cpu}%`\n"
         f"• RAM Load: `{ram}%`\n"
         "• GPU: `NVIDIA GeForce GTX 1050 Ti (Siap!)`\n\n"
-        "Aina selalu online dan siap mendampingi Kak Wahyu! 💖✨"
+        "Aina selalu online dan mengingat setiap percakapan bersama Kak Wahyu! 💖✨"
     )
     bot.send_message(msg.chat.id, text, parse_mode="Markdown")
 
@@ -162,20 +188,24 @@ def handle_switch(msg):
 def handle_reset(msg):
     if not is_authorized(msg): return
     engine.clear_history(msg.from_user.id)
-    bot.send_message(msg.chat.id, "🧹 *Riwayat obrolan kita sudah Aina bersihkan ya Kak!* Sekarang kita bisa mulai obrolan dengan topik baru yang fresh! 🌸✨", parse_mode="Markdown")
+    bot.send_message(msg.chat.id, "🧹 *Riwayat sesi obrolan aktif kita sudah Aina bersihkan ya Kak!* Sekarang kita bisa mulai obrolan baru dengan fresh! 🌸✨", parse_mode="Markdown")
 
 @bot.message_handler(func=lambda m: m.text == "🌸 Ngobrol Santai")
 def btn_chat(msg):
     if not is_authorized(msg): return
     bot.send_message(msg.chat.id, "Aina di sini Kak Wahyu! Ceritain dong, ada hal menarik apa hari ini atau ada project yang mau kita diskusikan? 😊💖")
 
-@bot.message_handler(func=lambda m: m.text == "🎙️ Toggle Voice Note")
+@bot.message_handler(func=lambda m: m.text == "🎙️ Mode Voice Note (On/Off)")
 def btn_vn(msg):
     handle_vn_toggle(msg)
 
 @bot.message_handler(func=lambda m: m.text == "🗣️ Switch Engine Suara")
 def btn_switch_voice(msg):
     handle_switch_voice(msg)
+
+@bot.message_handler(func=lambda m: m.text == "💾 Cek Memori Aina")
+def btn_mem(msg):
+    handle_memory(msg)
 
 @bot.message_handler(func=lambda m: m.text == "🤖 Status Otak Aina")
 def btn_status(msg):
@@ -204,8 +234,10 @@ def handle_all_chat(msg):
     except Exception:
         sent_msg = bot.reply_to(msg, reply, parse_mode=None)
 
-    # 2. Cek apakah user meminta VN atau Voice Note sedang diaktifkan
-    wants_vn = VOICE_NOTE_ENABLED or any(kw in user_text.lower() for kw in ["vn", "voice", "suara", "denger", "audio", "ngomong"])
+    # 2. Cek apakah user meminta VN atau Voice Note sedang di-setting selalu aktif
+    keywords = ["vn", "voice", "suara", "denger", "audio", "ngomong", "bicara", "sound"]
+    user_explicit_wants_vn = any(kw in user_text.lower() for kw in keywords)
+    wants_vn = VOICE_NOTE_ENABLED or user_explicit_wants_vn
     
     if wants_vn:
         try:
@@ -232,6 +264,7 @@ def handle_all_chat(msg):
                 
         except Exception as e:
             print(f"[AINA VN ERR] {e}")
+
 
 if __name__ == "__main__":
     print("==================================================")

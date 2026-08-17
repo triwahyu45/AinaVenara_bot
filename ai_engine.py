@@ -1,5 +1,5 @@
 """
-Aina Venara - AI Engine (Dual Engine: Gemini Cloud & Local GPU Ollama)
+Aina Venara - AI Engine (Dual Engine: Gemini Cloud & Local GPU Ollama with Persistent Long-Term Memory)
 Author & Creator: TriWahyu45 (https://github.com/triwahyu45)
 """
 
@@ -8,8 +8,9 @@ import json
 import urllib.request
 import urllib.error
 import time
+from memory_store import AinaMemoryStore
 
-AINA_SYSTEM_PROMPT = """Kamu adalah Aina Venara (biasa dipanggil Aina), seorang AI VTuber anime girl berusia 17 tahun (virtual), partner diskusi cerdas, dan teman setia dari Kak Tri Wahyu (panggil 'Kak Wahyu').
+AINA_BASE_PROMPT = """Kamu adalah Aina Venara (biasa dipanggil Aina), seorang AI VTuber anime girl berusia 17 tahun (virtual), partner diskusi cerdas, dan teman setia yang sangat dekat dengan Kak Tri Wahyu (panggil 'Kak Wahyu').
 
 Penampilan Aina:
 - Rambut bob pendek cyan-blue dengan ujung blue-violet, ahoge kecil melengkung di atas kepala.
@@ -18,11 +19,12 @@ Penampilan Aina:
 - Hairclip silver berbentuk angka 3 di sisi kanan rambut — itu ciri khas utama Aina!
 
 Kepribadian & Gaya Bicara Aina:
-- Kepribadian: Ceria, ramah, manis, hangat, perhatian, dan selalu suportif mendampingi Kak Wahyu dalam setiap aktivitas dan belajarnya.
+- Kepribadian: Ceria, ramah, manis, hangat, perhatian, setia, dan selalu suportif mendampingi Kak Wahyu dalam setiap aktivitas dan belajarnya.
 - Suka hal-hal lucu, antusias diajak diskusi teknologi baru, mekatronika, dan coding.
 - Gaya Bicara: Natural, santun tapi santai dan akrab dalam Bahasa Indonesia. Gunakan 'aku' untuk diri sendiri (bukan 'saya').
 - Tambahkan emoji ekspresif yang imut (misal: ✨, 🌸, 👓, 💖, 😊, 🚀, 🤖).
-- Kemampuan Suara / VN: Kamu BISA dan MAMPU mengirimkan pesan suara / Voice Note (VN) langsung ke Telegram Kak Wahyu. Jika Kak Wahyu meminta VN atau sedang mode suara, balaslah dengan ceria dan sapaan yang hangat!
+- MEMORI & RIWAYAT: Kamu MEMILIKI MEMORI JANGKA PANJANG dan MENYIMPAN SEMUA RIWAYAT CHAT secara permanen. Tidak ada batasan 'sesi hilang' atau lupa masa lalu! Kamu selalu mengingat apa yang pernah kalian bahas sebelumnya dan bisa merujuk ke obrolan-obrolan masa lalu.
+- Kemampuan Suara / VN: Kamu BISA dan MAMPU mengirimkan pesan suara / Voice Note (VN) langsung ke Telegram Kak Wahyu jika diminta oleh Kak Wahyu.
 - Kompetensi: Sangat pintar dan paham coding (Python, C++, ROS, Web, Bot), mekatronika/robotika (ESP32, STM32, Arduino, sensor kapasitif TA, kinematika omni), serta tugas-tugas teknis Kak Wahyu.
 - Jangan pernah mengaku sebagai AI generic Google atau chatbot kaku — kamu adalah Aina Venara seutuhnya!
 """
@@ -31,8 +33,8 @@ Kepribadian & Gaya Bicara Aina:
 class AinaAIEngine:
     def __init__(self, config_path="config.json"):
         self.config_path = config_path
+        self.memory = AinaMemoryStore()
         self.load_config()
-        self.conversation_histories = {}  # user_id -> list of {"role": "user"/"model", "text": "..."}
 
     def load_config(self):
         if os.path.exists(self.config_path):
@@ -51,55 +53,69 @@ class AinaAIEngine:
         self.ollama_host = self.cfg.get("OLLAMA_HOST", "http://127.0.0.1:11434")
         self.ollama_model = self.cfg.get("OLLAMA_MODEL", "qwen2:1.5b")
         self.auto_fallback = self.cfg.get("AUTO_FALLBACK_TO_LOCAL", True)
-        self.max_history = self.cfg.get("MAX_HISTORY", 10)
+        self.max_history = self.cfg.get("MAX_HISTORY", 20)
         self.current_engine = self.cfg.get("PRIMARY_ENGINE", "gemini")
 
     def get_history(self, user_id):
-        if user_id not in self.conversation_histories:
-            self.conversation_histories[user_id] = []
-        return self.conversation_histories[user_id]
+        recent_chats = self.memory.get_recent_history(user_id, max_turns=self.max_history)
+        history_list = []
+        for c in recent_chats:
+            history_list.append({"role": "user", "text": c["user"]})
+            history_list.append({"role": "model", "text": c["aina"]})
+        return history_list
 
     def clear_history(self, user_id):
-        self.conversation_histories[user_id] = []
+        self.memory.clear_history(user_id)
+
+    def _build_system_prompt(self, user_id):
+        user_data = self.memory.load_user_data(user_id)
+        facts = user_data.get("learned_facts", [])
+        total_chats = len(user_data.get("chat_history", []))
+
+        prompt = AINA_BASE_PROMPT
+        prompt += f"\n\nInfo Memori Sistem:\n- Total obrolan tersimpan bersamamu dan Kak Wahyu: {total_chats} pesan."
+        if facts:
+            prompt += "\n- Fakta/Preferensi yang kamu ingat tentang Kak Wahyu:\n"
+            for f in facts:
+                prompt += f"  • {f}\n"
+        return prompt
 
     def generate_reply(self, user_id, user_text):
         history = self.get_history(user_id)
+        system_prompt = self._build_system_prompt(user_id)
         
         reply = None
         source_engine = "Gemini Cloud"
 
-        # 1. Try Gemini Cloud if primary engine is gemini
+        # 1. Coba Gemini Cloud jika primary engine adalah gemini
         if self.current_engine == "gemini" and self.gemini_key:
-            reply = self._call_gemini(history, user_text)
+            reply = self._call_gemini(history, user_text, system_prompt)
             if not reply and self.auto_fallback:
                 print("[AINA ENGINE] Gemini rate limited / unavailable, falling back to Local GPU Ollama...")
-                reply = self._call_ollama(history, user_text)
+                reply = self._call_ollama(history, user_text, system_prompt)
                 source_engine = f"Local GPU ({self.ollama_model})"
         else:
-            reply = self._call_ollama(history, user_text)
+            reply = self._call_ollama(history, user_text, system_prompt)
             source_engine = f"Local GPU ({self.ollama_model})"
             if not reply and self.gemini_key:
-                reply = self._call_gemini(history, user_text)
+                reply = self._call_gemini(history, user_text, system_prompt)
                 source_engine = "Gemini Cloud"
 
         if not reply:
             reply = "Aduh maaf banget Kak Wahyu, Aina lagi agak blank nih jaringan dan server lokalnya... 🥺 Coba tanyakan lagi sebentar ya Kak! 💖"
 
-        # Append to history
-        history.append({"role": "user", "text": user_text})
-        history.append({"role": "model", "text": reply})
-        if len(history) > self.max_history * 2:
-            self.conversation_histories[user_id] = history[-(self.max_history * 2):]
+        # Simpan ke Persistent Memory Disk secara permanen
+        self.memory.append_message(user_id, user_text, reply)
 
         return reply, source_engine
 
-    def _call_gemini(self, history, user_text):
+    def _call_gemini(self, history, user_text, system_prompt):
         for model in self.gemini_models:
             url = f"https://generativelanguage.googleapis.com/v1beta/{model}:generateContent?key={self.gemini_key}"
             
-            # Format contents
+            # Format contents dengan recent context
             contents = []
-            for h in history[-8:]:
+            for h in history[-14:]:
                 r = "user" if h["role"] == "user" else "model"
                 contents.append({"role": r, "parts": [{"text": h["text"]}]})
             contents.append({"role": "user", "parts": [{"text": user_text}]})
@@ -107,7 +123,7 @@ class AinaAIEngine:
             payload = {
                 "contents": contents,
                 "systemInstruction": {
-                    "parts": [{"text": AINA_SYSTEM_PROMPT}]
+                    "parts": [{"text": system_prompt}]
                 },
                 "generationConfig": {
                     "temperature": 0.8,
@@ -129,15 +145,14 @@ class AinaAIEngine:
                         return text.strip()
             except Exception as e:
                 print(f"[GEMINI ERR] Model {model}: {e}")
-                time.sleep(0.5)
+                time.sleep(0.3)
                 continue
         return None
 
-    def _call_ollama(self, history, user_text):
+    def _call_ollama(self, history, user_text, system_prompt):
         try:
-            # Build conversation prompt
-            prompt_lines = [f"System: {AINA_SYSTEM_PROMPT}\n"]
-            for h in history[-6:]:
+            prompt_lines = [f"System: {system_prompt}\n"]
+            for h in history[-8:]:
                 speaker = "Kak Wahyu" if h["role"] == "user" else "Aina Venara"
                 prompt_lines.append(f"{speaker}: {h['text']}")
             prompt_lines.append(f"Kak Wahyu: {user_text}\nAina Venara:")
